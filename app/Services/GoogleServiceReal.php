@@ -34,6 +34,8 @@ Class GoogleServiceReal
         ]);
         $this->google->setRedirectUri($this->redirect);
         $this->google->setAccessType('offline');
+        $this->google->setPrompt('consent');
+        // $this->google->setIncludeGrantedScopes(true);
         $this->oauth = new Google\Service\Oauth2($this->google);
 
 
