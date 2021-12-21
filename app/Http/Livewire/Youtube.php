@@ -63,6 +63,11 @@ class Youtube extends Component
             // dump($data['playlists']);
         }
 
+        // baru
+        if(auth()->check()) {
+            $data['channels'] = auth()->user()->channel_detail;
+        }
+
         return view('livewire.youtube', $data);
     }
 
