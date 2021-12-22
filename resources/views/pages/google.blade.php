@@ -14,11 +14,13 @@
 
                         <div>
                             <div class="flex w-full mt-4 justify-center">
-                                @if(!session()->has('youtube-token'))
-                                    <a href="{{ $auth_url }}" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Login</a>
-                                @else
+                                @auth
                                     @livewire('youtube')
-                                @endif
+                                @endauth
+
+                                @guest
+                                    <a href="{{ route('youtube.login') }}" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Login</a>
+                                @endguest
 
                             </div>
                         </div>

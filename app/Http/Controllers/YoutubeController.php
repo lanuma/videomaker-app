@@ -32,7 +32,7 @@ class YoutubeController extends Controller
                 'token_type' => $token['token_type'],
             ]);
 
-            Auth::loginUsingId(1);
+            // Auth::loginUsingId(1);
 
 
             return redirect()->route('youtube');
@@ -40,8 +40,15 @@ class YoutubeController extends Controller
         }
         // dd($google->getMyChannel()->getItems()[0]->getSnippet());
 
-        // dump(session('youtube-token'));
+        dump(auth()->user());
 
         return view('pages.google', compact('auth_url'));
+    }
+
+    public function login()
+    {
+        Auth::loginUsingId(1);
+
+        return redirect()->route('youtube');
     }
 }

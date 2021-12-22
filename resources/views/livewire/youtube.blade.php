@@ -1,16 +1,19 @@
 <div>
+    @auth
+        <label for="channel" class="block text-sm font-medium text-gray-700">Select Channel</label>
+        <select name="channel" wire:model="channel" wire:change="channel($event.target.value)" class="mt-2 mb-3 py-2 px-3 border focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+            <option value="">.::Pilih::.</option>
+            @foreach ($channels as $channel)
+            <option value="{{ $channel->channel_id }}">{{ $channel->channel_name }}</option>
+            @endforeach
+        </select>
+    @endauth
+
     @if(session()->has('youtube-token'))
 
     <form wire:submit.prevent="submit">
         @csrf
         <div>
-            <label for="channel" class="block text-sm font-medium text-gray-700">Select Channel</label>
-            <select name="channel" wire:model="channel" wire:change="channel($event.target.value)" class="mt-2 mb-3 py-2 px-3 border focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                <option value="">.::Pilih::.</option>
-                @foreach ($channels as $channel)
-                <option value="{{ $channel->channel_id }}">{{ $channel->channel_name }}</option>
-                @endforeach
-            </select>
 
             <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
             <input type="text" name="title" value="" wire:model="title" placeholder="Youtube Video Title" class="mt-2 mb-3 py-2 px-3 border focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
